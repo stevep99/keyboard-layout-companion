@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_info"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/info"
+        android:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="@string/settings"
+        android:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_save"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="@string/save"
+        android:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_output_text"
+        android:icon="@android:drawable/ic_menu_set_as"
+        android:title="@string/output_text"
+        android:showAsAction="always" />
+
+</menu>

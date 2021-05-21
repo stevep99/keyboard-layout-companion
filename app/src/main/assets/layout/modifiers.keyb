@@ -1,0 +1,78 @@
+#name: Modifiers
+#mapping: FORMAT_FULL
+#layer: mod0
+#labels
+_ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _
+Caps _ _ _ _ _ _ _ _ _ _ _ _
+Shift _ _ _ _ _ _ _ _ _ _ Shift
+Ctrl Win Alt _ _ Space
+_ _ AltGr Win Mnu Ctrl
+#colors
+x x x x x x x x x x x x x x
+x x x x x x x x x x x x x x
+p x x x x x x x x x x x x x
+b x x x x x x x x x x b
+r c g y y y
+y y g c c r
+
+#layer: mod1
+#labels
+_ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _
+Extend _ _ _ _ _ _ _ _ _ _ _ _
+Shift _ _ _ _ _ _ _ _ _ _ Shift
+Ctrl Win Alt _ _ Space
+_ _ AltGr Win Mnu Ctrl
+#colors
+x x x x x x x x x x x x x x
+x x x x x x x x x x x x x x
+p x x x x x x x x x x x x x
+b x x x x x x x x x x b
+
+#layer: mod2
+#labels
+_ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _
+Win _ _ _ _ _ _ _ _ _ _ _ _
+Shift _ _ _ _ _ _ _ _ _ _ Shift
+Ctrl Alt Extd  _     _   Space
+_    _   Shift AltGr Mnu Ctrl
+#colors
+x x x x x x x x x x x x x x
+x x x x x x x x x x x x x x
+c x x x x x x x x x x x x x
+b x x x x x x x x x x b
+r g p y y y
+y y b g c r
+
+#layer: mod3
+#labels
+_ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _
+Alt _ _ _ _ _ _ _ _ _ _ _ _
+Shift _ _ _ _ _ _ _ _ _ _ Shift
+Ctrl Win Extd  _     _   Space
+_    _   Shift AltGr Mnu Ctrl
+#colors
+x x x x x x x x x x x x x x
+x x x x x x x x x x x x x x
+g x x x x x x x x x x x x x
+b x x x x x x x x x x b
+r c p y y y
+y y b g c r
+#layer: mod4
+#labels
+_ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _
+Shift _ _ _ _ _ _ _ _ _ _ Shift
+Ctrl  Alt Extd  _   Space Space
+Shift _   AltGr Win Mnu   Ctrl
+#colors
+x x x x x x x x x x x x x x
+x x x x x x x x x x x x x x
+x x x x x x x x x x x x x x
+b x x x x x x x x x x b
+r g p y y y
+b y g c c r

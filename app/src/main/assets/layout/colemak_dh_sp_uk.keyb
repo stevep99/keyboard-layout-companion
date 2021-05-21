@@ -1,0 +1,78 @@
+#name: Colemak-DH Seniply UK
+#config: ANGLE MATRIX
+#mapping: FORMAT_FULL
+
+#multilayer: All Layers
+
+#layer: Base
+#labels
+`   1   2   3   4   5   6   7   8   9   0   -   =   ⌫
+⇥   q   w   f   p   b   j   l   u   y   '   [   ]
+\0  a   r   s   t   g   m   n   e   i   o   ;
+⇧   z   x   c   d   v   k   h   ,   .   /   ⇧
+    Ctrl   Alt     Ext     _       ⇧       ⇧
+    ␣      ␣       Sym     Alt     ⊞       Ctrl
+
+#layer: Symbols1
+#labels
+_   _   _   _   _   _   _   _   _   _   _   _   _
+_   !   "   £   $   %   =   7   8   9   +   _   _   _
+_   ;   :   {   (   [   *   4   5   6   -   _   _
+_   ^   &   }   )   ]   0   1   2   3   /
+    _    _    _    _    _    _
+    _    _*   _*   _    _    _
+#colors
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f
+    f f f f f f
+    f r r f f f
+
+#layer: Symbols2
+#labels
+_   _   _   _   _   _   _   _   _   _   _   _   _
+_   ¡   €   …   ¢   ½   ≠   ∞   d¨  №   ±   _   _   _
+_   #   ~   §   ™   ®   ×   ←   d'  →   \_  _   _
+_   `   ¬   ©   \\  |   °   •   ≤   ≥   ÷
+    _    _    _    _    _*   _
+    _    _*   _*   _    _    _
+#colors
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f
+    f f f f r f
+    f r r f f f
+
+#layer: Extend
+#labels
+_    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+_    Esc  Bk   ⎈F   Fw   Ins  ⇞    ⇱    ↑    ⇲    ⇪    _    _    _    _
+_    ⎇   ⊞    ⇧    ⎈    RA   ⇟    ←    ↓    →    ⌦    _    _    _
+_    ⎈Z   ⎈X   ⎈C   ⇥    ⎈V   ⏎    ⌫    ⇧    ⎈    Cmp  _    _
+     _    _    _*   _    _    _
+     ⏎    _    _    _    _    _
+#colors
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f
+    f f r f f f
+    f f f f f f
+
+#layer: Function
+#labels
+_    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+_    @L1  @L2  @L3  @L4  @L5  F12  F7   F8   F9   Prt  _    _    _    _
+_    ⎇   ⊞    ⇧    ⎈    RA   F11  F4   F5   F6   ☰   _    _    _
+_    ⎈⇧Z  ⎈⇧X  ⎈⇧C  ⇧⇥   ⎈⇧V  F10  F1   F2   F3   _    _    _
+     _    _    _*   _    _    _
+     ⏎    _*   _*   _    _    _
+#colors
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f f f
+f f f f f f f f f f f f
+    f f r f f f
+    f r r f f f

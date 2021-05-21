@@ -1,0 +1,7 @@
+#name: Dvorak
+#mapping: FORMAT_FULL
+#labels
+` 1 2 3 4 5 6 7 8 9 0 [ ]
+\0 ' , . p y f g c r l /
+\0 a o e u i d h t n s -
+\0 ; q j k x b m w v z \0

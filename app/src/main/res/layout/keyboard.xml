@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/textAppearanceSmall"
+            android:text="@string/mode"
+            android:layout_marginStart="5dp"/>
+
+        <Spinner
+            android:id="@+id/modeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/textAppearanceSmall"
+            android:text="@string/layout"
+            android:layout_marginStart="5dp"/>
+
+        <Spinner
+            android:id="@+id/keyboardLayoutSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:dropDownWidth="200dp">
+        </Spinner>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/textAppearanceSmall"
+            android:text="@string/geometry"
+            android:layout_marginStart="5dp"/>
+
+        <Spinner
+            android:id="@+id/keyboardGeometrySpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp">
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/textAppearanceSmall"
+            android:text="@string/filter"
+            android:layout_marginStart="5dp"/>
+
+        <Spinner
+            android:id="@+id/keyboardKeyFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/keyboardSplit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/split"
+            android:checked="false"
+            android:layout_marginStart="5dp"/>
+
+        <CheckBox
+            android:id="@+id/keyboardShowStyles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/styles"
+            android:checked="true"
+            android:layout_marginStart="5dp"/>
+
+        <CheckBox
+            android:id="@+id/keyboardShowFingers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fingers"
+            android:checked="true"
+            android:layout_marginStart="5dp"/>
+
+        <LinearLayout
+            android:id="@+id/layerPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:text="@string/layers"/>
+
+            <ImageView
+                android:id="@+id/layerPrevious"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/arrow_left"/>
+
+            <ImageView
+                android:id="@+id/layerNext"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/arrow_right"/>
+
+            <TextView
+                android:id="@+id/layerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                style="?android:attr/textAppearanceSmall"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/keyboardPrintView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:orientation="vertical"
+            android:padding="4px"
+            android:background="#00000000">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/keyboardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:background="#00000000">
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
