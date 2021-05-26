@@ -4,7 +4,6 @@ import android.content.Context
 import io.github.colemakmods.keyboard_companion.model.Geometry.FingerConfig
 import io.github.colemakmods.keyboard_companion.model.LayoutMapping.Companion.createLabelLayer
 import io.github.colemakmods.keyboard_companion.model.LayoutMapping.LayoutMappingBuilder
-import io.github.colemakmods.keyboard_companion.view.KeyboardCompanionActivity.Companion.SD_LAYOUT_DIR
 import timber.log.Timber
 import java.io.*
 import java.util.*
@@ -16,7 +15,7 @@ class LayoutInitializer {
     private var geometryList: List<Geometry> = ArrayList()
     private val layouts: MutableList<Layout> = ArrayList()
 
-    fun init(context: Context, geometryList: List<Geometry>) {
+    fun init(context: Context, geometryList: List<Geometry>, layoutDir: File?) {
         this.geometryList = geometryList
 
         //load in available layout files
@@ -32,12 +31,12 @@ class LayoutInitializer {
                         Timber.w(ex, "Error reading layout file $fileName")
                     }
                 }
-        SD_LAYOUT_DIR.list()
+        layoutDir?.list()
                 ?.filter { it.endsWith(".keyb") }
                 ?.forEach { fileName ->
                     Timber.d("Loading layout file $fileName")
                     try {
-                        FileInputStream(File(SD_LAYOUT_DIR, fileName)).use {
+                        FileInputStream(File(layoutDir, fileName)).use {
                             initLayout(it, fileName)
                         }
                     } catch (ex: IOException) {

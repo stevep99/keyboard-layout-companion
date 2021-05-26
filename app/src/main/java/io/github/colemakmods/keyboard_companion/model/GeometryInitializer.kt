@@ -1,7 +1,6 @@
 package io.github.colemakmods.keyboard_companion.model
 
 import android.content.Context
-import io.github.colemakmods.keyboard_companion.view.KeyboardCompanionActivity.Companion.SD_GEOMETRY_DIR
 import timber.log.Timber
 import java.io.File
 import java.io.FileInputStream
@@ -16,7 +15,7 @@ class GeometryInitializer {
 
     private val geometryList = ArrayList<Geometry>()
 
-    fun init(context: Context) {
+    fun init(context: Context, geometryDir: File?) {
         context.assets.list("geometry")
                 ?.filter { it.endsWith(".json") }
                 ?.forEach { fileName ->
@@ -29,12 +28,12 @@ class GeometryInitializer {
                         Timber.w(ex, "Error reading geometry file $fileName")
                     }
                 }
-        SD_GEOMETRY_DIR.list()
+        geometryDir?.list()
                 ?.filter { it.endsWith(".json") }
                 ?.forEach { fileName ->
                     Timber.d("loading geometry file $fileName")
                     try {
-                        FileInputStream(File(SD_GEOMETRY_DIR, fileName)).use {
+                        FileInputStream(File(geometryDir, fileName)).use {
                             initGeometry(it)
                         }
                     } catch (ex: IOException) {

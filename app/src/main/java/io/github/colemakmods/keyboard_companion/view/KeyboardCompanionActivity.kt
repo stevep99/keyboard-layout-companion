@@ -29,10 +29,6 @@ import java.io.*
 class KeyboardCompanionActivity : Activity() {
 
     companion object {
-        private val SD_KEYBOARD_DIR = File(Environment.getExternalStorageDirectory(), "keyboard")
-        val SD_OUTPUT_DIR = File(SD_KEYBOARD_DIR, "output")
-        val SD_GEOMETRY_DIR = File(SD_KEYBOARD_DIR, "geometry")
-        val SD_LAYOUT_DIR = File(SD_KEYBOARD_DIR, "layout")
         private const val DEFAULT_LAYOUT_OPTION = "Colemak-DH"
         private const val FIND_OPTIMAL_FINGER = false
         private const val SCALE_BITMAP = false
@@ -64,8 +60,9 @@ class KeyboardCompanionActivity : Activity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.keyboard)
+
         val gi = GeometryInitializer()
-        gi.init(this)
+        gi.init(this, externalGeometryDir())
         geometryList = gi.getGeometryList()
         if (geometryList.isEmpty()) {
             Timber.e("Unable to initialize geometry files")
@@ -74,7 +71,7 @@ class KeyboardCompanionActivity : Activity() {
 
         Timber.d("Initialized ${geometryList.size} geometry files")
         val li = LayoutInitializer()
-        li.init(this, geometryList)
+        li.init(this, geometryList, externalLayoutDir())
         layoutList = li.getLayouts()
         if (layoutList.isEmpty()) {
             Timber.e("Unable to initialize layout files")
@@ -109,7 +106,7 @@ class KeyboardCompanionActivity : Activity() {
             options.showSplit = compoundButton.isChecked
             refreshKeyboard()
         }
-        options.showSplit = keyboardSplit.isChecked()
+        options.showSplit = keyboardSplit.isChecked
         layerPanel = findViewById(R.id.layerPanel)
         layerName = findViewById(R.id.layerName)
 
@@ -282,21 +279,22 @@ class KeyboardCompanionActivity : Activity() {
     }
 
     private fun outputTextKeyboardActual() {
-        if (!SD_OUTPUT_DIR.exists()) {
-            SD_OUTPUT_DIR.mkdirs()
-        }
-        val filename = "${currentLayout.id}_${currentGeometry.id}.dat"
-        val saveFile = File(SD_OUTPUT_DIR, filename)
+        externalOutputDir()?.let { dir ->
+            val filename = "${currentLayout.id}_${currentGeometry.id}.dat"
+            val saveFile = File(dir, filename)
 
-        try {
-            val writer = PrintWriter(FileWriter(saveFile))
-            writer.use {
-                currentGeometry.updateDistancesScores(FIND_OPTIMAL_FINGER)
-                currentLayout.dumpAll(it, currentGeometry)
+            try {
+                val writer = PrintWriter(FileWriter(saveFile))
+                writer.use {
+                    currentGeometry.updateDistancesScores(FIND_OPTIMAL_FINGER)
+                    currentLayout.dumpAll(it, currentGeometry)
+                }
+                Timber.d("Saved keyboard text file to $saveFile")
+                Toast.makeText(this, "Written to $filename", Toast.LENGTH_SHORT).show()
+            } catch(e: Exception) {
+                Timber.w(e, "Unable to write text file to $filename")
+                Toast.makeText(this, "Error: unable to write to $filename", Toast.LENGTH_SHORT).show()
             }
-            Toast.makeText(this, "Written to $filename", Toast.LENGTH_SHORT).show()
-        } catch(e: Exception) {
-            Toast.makeText(this, "Error: unable to write to $filename", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -326,16 +324,13 @@ class KeyboardCompanionActivity : Activity() {
             mainLayer, showMultiLayers, true, options)
         keyboardPrintView.post {
             save(keyboardPrintView, filename)
-            Toast.makeText(this@KeyboardCompanionActivity, "Printed to $filename",
-                    Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun save(view: View, filename: String) {
         view.isDrawingCacheEnabled = true
         val srcBitmap = view.drawingCache
-        val destBitmap: Bitmap
-        destBitmap = if (SCALE_BITMAP) {
+        val destBitmap = if (SCALE_BITMAP) {
             val scale = OUTPUT_BITMAP_WIDTH.toFloat() / srcBitmap.width
             Timber.d("saving keyboard at scale $scale")
             Bitmap.createScaledBitmap(srcBitmap,
@@ -345,17 +340,18 @@ class KeyboardCompanionActivity : Activity() {
         } else {
             srcBitmap
         }
-        if (!SD_OUTPUT_DIR.exists()) {
-            SD_OUTPUT_DIR.mkdirs()
-        }
-        val saveFile = File(SD_OUTPUT_DIR, filename)
-        try {
-            val strm = FileOutputStream(saveFile)
-            destBitmap.compress(Bitmap.CompressFormat.PNG, 95, strm)
-            strm.close()
-            Timber.d("saved keyboard at $saveFile")
-        } catch (e: IOException) {
-            Timber.w(e, "Unable to save image file")
+        externalOutputDir()?.let { dir ->
+            val saveFile = File(dir, filename)
+            try {
+                val strm = FileOutputStream(saveFile)
+                destBitmap.compress(Bitmap.CompressFormat.PNG, 95, strm)
+                strm.close()
+                Timber.d("saved keyboard image to $saveFile")
+                Toast.makeText(this, "Printed to $filename", Toast.LENGTH_SHORT).show()
+            } catch (e: IOException) {
+                Timber.w(e, "Unable to save keyboard image file")
+                Toast.makeText(this, "Error: unable to save image $filename", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -395,6 +391,12 @@ class KeyboardCompanionActivity : Activity() {
                             .putOptions(options)
                 }
     }
+
+    private fun externalOutputDir() = getExternalFilesDir("output")
+
+    private fun externalGeometryDir() = getExternalFilesDir("geometry")
+
+    private fun externalLayoutDir() = getExternalFilesDir("layout")
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
