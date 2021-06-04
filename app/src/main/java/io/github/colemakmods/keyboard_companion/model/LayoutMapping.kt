@@ -157,9 +157,10 @@ class LayoutMapping(private val layers: List<Layer>) {
             for (row in FORMAT_FULL.indices) {
                 for (col in FORMAT_FULL[row].indices) {
                     val keyId = getKeyId(FORMAT_FULL, row, col)
-                    val baseLayerLabel = layers[0].getLabel(keyId)
+                    val baseLayer = if (layers[0].isMulti) layers[1] else layers[0]
+                    val baseLayerLabel = baseLayer.getLabel(keyId)
                     if (baseLayerLabel == null) {
-                        layers[0].putLabel(keyId, DEFAULT_LABELS[row][col])
+                        baseLayer.putLabel(keyId, DEFAULT_LABELS[row][col])
                     }
                 }
             }
