@@ -310,11 +310,6 @@ class KeyboardCompanionActivity : Activity() {
 
     private fun printKeyboardActual() {
         Timber.d("printKeyboard ${currentGeometry.title}  ${currentLayout.name}")
-        val filename = if (currentLayout.layerCount > 1) {
-            "${currentLayout.id}_${currentGeometry.id}_${currentLayout.getLayerName(currentLayer)}.png"
-        } else {
-            "${currentLayout.id}_${currentGeometry.id}.png"
-        }
         val showMultiLayers = currentLayout.isLayerMulti(currentLayer)
         var mainLayer = if (showMultiLayers) currentLayer + 1 else currentLayer
 
@@ -323,7 +318,17 @@ class KeyboardCompanionActivity : Activity() {
         keyboardViewCreator.createKeyViews(keyboardPrintView, currentGeometry, currentLayout,
             mainLayer, showMultiLayers, true, options)
         keyboardPrintView.post {
-            save(keyboardPrintView, filename)
+            save(keyboardPrintView, getOutputImageFilename())
+        }
+    }
+
+    private fun getOutputImageFilename(): String {
+        return if (currentLayout.layerCount > 1) {
+            val layerPart = currentLayout.getLayerName(currentLayer).replace("\\s+".toRegex(), "_")
+                .lowercase()
+            "${currentLayout.id}_${currentGeometry.id}_$layerPart.png"
+        } else {
+            "${currentLayout.id}_${currentGeometry.id}.png"
         }
     }
 
