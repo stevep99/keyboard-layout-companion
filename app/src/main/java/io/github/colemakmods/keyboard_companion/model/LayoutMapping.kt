@@ -115,13 +115,16 @@ class LayoutMapping(private val layers: List<Layer>) {
                 var label: String?
                 var graphic: String? = null
                 if (DEFAULT_LABEL != token) {
-                    if (token.startsWith(BLANK_LABEL)) {
-                        label = ""
-                        if (token.length > 1) {
-                            graphic = token.substring(1)
-                        }
-                    } else if (token.startsWith("\\") && token.length > 1) {
+                    if (token.startsWith("\\") && token.length > 1) {
                         label = token.substring(1)
+                    } else if (token == BLANK_LABEL) {
+                        label = ""
+                    } else if (token.contains(BLANK_LABEL)) {
+                        val sep = token.indexOf(BLANK_LABEL)
+                        if (sep < token.length) {
+                            graphic = token.substring(sep + 1)
+                        }
+                        label = if (sep > 0) token.substring(0, sep) else ""
                     } else {
                         label = token
                     }

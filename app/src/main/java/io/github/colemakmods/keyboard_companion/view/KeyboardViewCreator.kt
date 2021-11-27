@@ -218,6 +218,7 @@ class KeyboardViewCreator(private val context: Context, private val onRefreshReq
 
     private fun getKeyGraphicResource(graphicId: String?): Int {
         return if (graphicId == null) 0 else when (graphicId) {
+            "O" -> R.drawable.blackcircle
             "o" -> R.drawable.bluecircle
             "x" -> R.drawable.redx
             "*" -> R.drawable.star
