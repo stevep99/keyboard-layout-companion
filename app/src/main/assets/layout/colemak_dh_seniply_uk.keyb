@@ -1,0 +1,76 @@
+#name: Colemak-DH Seniply UK
+#config: ANGLE MATRIX
+#mapping: FORMAT_FULL
+
+#multilayer: All Layers
+
+#layer: Base
+#labels
+`    1    2    3    4    5    6    7    8    9    0    -    =    ⌫
+⇥    q    w    f    p    b    j    l    u    y    '    [    ]
+\0   a    r    s    t    g    m    n    e    i    o    ;
+⇧    z    x    c    d    v    k    h    ,    .    /    ⇧
+Ctrl Alt  Ext  _    ⇧    ⇧    ␣    ␣    Sym  Alt  ⊞    Ctrl
+#colors
+ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff
+ff   ff   f    f    f    f    f    f    f    ff   ff   ff
+#lct lwin lalt jrom lspc spc  rspc jhir ralt rwin mnu  rct
+
+#layer: Symbols1
+#labels
+_    _    _    _    _    _    _    _    _    _    _    _    _    _
+_    !    "    ;    :    \_   =    7    8    9    +    _    _    _
+_    ~    #    {    (    [    *    4    5    6    -    _    _    _
+_    \\   |    }    )    ]    0    1    2    3    /
+_    _    _    _    _    _    _    _    _*   _    _    _
+#colors
+ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff
+ff   ff   f    f    f    f    f    f    r    ff   ff   ff
+
+#layer: Symbols2
+#labels
+_    _    _    _    _    _    _    _    _    _    _    _    _
+_    ¹    ²    ³    €    🔆    ≠    &    `    ¬    ±    _    _
+_    🔇    🔉    ▶    🔊    🔅    ×    $    %    ^    \_    _    _
+_    _    ⏮    ■    ⏭    _    °    !    "    £    ÷    _
+_    _    _    _    _*   _    _    _    _*   _    _    _
+#colors
+ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff
+ff   ff   f    f    r    f    f    f    r    ff   ff   ff
+
+#layer: Extend
+#labels
+_    _    _    _    _    _    _    _    _    _    _    _    _    _
+_    Esc  Bk   ⎈F   Fw   Ins  ⇞    ⇱    ↑    ⇲    ⇪    _    _    _
+_    ⎇   ⊞    ⇧    ⎈    RA   ⇟    ←    ↓    →    ⌦    _    _    _
+_    ⎈Z   ⎈X   ⎈C   ⇥    ⎈V   ⏎    ⌫    ⇧    ⎈    Cmp  _    _
+_    _    _*   _    _    _    ⏎    _    _    _    _    _
+#colors
+ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff
+ff   ff   r    f    f    f    f    f    f    ff   ff   ff
+
+#layer: Function
+#labels
+_    _    _    _    _    _    _    _    _    _   _     _    _    _
+_    _    _    ⎈⇧F  Prt  _    F12  F7   F8   F9  @L3   _    _    _
+_    ⎇   ⊞    ⇧    ⎈    RA   F11  F4   F5   F6  @L2   _    _    _
+_    ⎈⇧Z  ⎈⇧X  ⎈⇧C  ⇧⇥   ⎈⇧V  F10  F1   F2   F3  @L1   _    _
+_    _    _*   _    _    _    ⏎    _    _*   _    _    _
+#colors
+ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+ff   f    f    f    f    f    f    f    f    f    f    ff
+ff   ff   r    f    f    f    f    f    r    ff   ff   ff

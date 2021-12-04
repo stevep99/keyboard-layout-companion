@@ -16,7 +16,7 @@ interface KeyRenderOptions {
     fun selectKeyDrawableByFinger(finger: Int): Int
     fun selectKeyDrawableByScore(score: Double): Int
     fun selectKeyDrawableByKeyType(keyType: KeyType): Int
-    fun selectKeyDrawable(keyspec: String): Int
+    fun selectKeyDrawable(keyspec: Char): Int
     fun getKeyBackground(highlight: Boolean): Int
     fun getTextHighlightStyle(highlight: Boolean): CharacterStyle?
 

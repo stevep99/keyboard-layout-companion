@@ -76,6 +76,7 @@ class KeyboardViewCreator(private val context: Context, private val onRefreshReq
 
                 //select the correct key background image
                 val drawable = selectKeyDrawable(key, row, keyLabel, color, options)
+                val alpha = selectKeyAlpha(color)
                 if (drawable == 0) {
                     keyButtonImage.visibility = View.INVISIBLE
                 } else {
@@ -83,9 +84,8 @@ class KeyboardViewCreator(private val context: Context, private val onRefreshReq
                     keyButtonImage.setBackgroundResource(drawable)
                     val keyMainTextView = keyView.findViewById<TextView>(R.id.keyMainTextView)
                     val keyHighlight = options.showStyles && key.highlight
-                    val keyFaded = options.showStyles && key.faded
-                    if (keyFaded) {
-                        keyView.alpha = 0.5f
+                    if (options.showStyles) {
+                        keyView.alpha = alpha
                     }
                     if (options.mode === Options.Mode.MODE_DISPLAY) {
                         showKeyLabel(layout, layer, showMultiLayers, key, keyView,
@@ -112,8 +112,7 @@ class KeyboardViewCreator(private val context: Context, private val onRefreshReq
                 }
                 keyView.layoutParams = params
                 keyView.setOnClickListener {
-                    //key.toggleHighlight();
-                    key.toggleFaded()
+                    key.toggleHighlight();
                     onRefreshRequest?.invoke()
                 }
                 keyView.setOnLongClickListener { view: View ->
@@ -243,8 +242,8 @@ class KeyboardViewCreator(private val context: Context, private val onRefreshReq
             drawable = options.keyRenderOptions.selectKeyDrawableByFinger(key.finger)
         } else {
             if (options.mode === Options.Mode.MODE_DISPLAY) {
-                if (color != null) {
-                    drawable = options.keyRenderOptions.selectKeyDrawable(color)
+                if (!color.isNullOrEmpty()) {
+                    drawable = options.keyRenderOptions.selectKeyDrawable(color[0])
                     if (drawable == KeyRenderOptions.KEY_DRAWABLE_FINGER) {
                         drawable = options.keyRenderOptions.selectKeyDrawableByFinger(key.finger)
                     }
@@ -258,6 +257,16 @@ class KeyboardViewCreator(private val context: Context, private val onRefreshReq
             }
         }
         return drawable
+    }
+
+    private fun selectKeyAlpha(color: String?): Float {
+        if (color != null && color.length >= 2) {
+            return when (color[0]) {
+                'f' -> 0.5f
+                else -> 1.0f
+            }
+        }
+        return 1.0f
     }
 
 }

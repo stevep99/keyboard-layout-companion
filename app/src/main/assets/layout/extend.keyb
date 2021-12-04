@@ -2,15 +2,14 @@
 #mapping: FORMAT_FULL
 #layer: Extend-basic
 #labels
-_    _    _    _    _    _    _    _    _    _    _    _    _    _    _
-_    _    _    _    _    _    ⇞    ⇱    ↑    ⇲    ⇪    _    _    _    _
-_    _    _    Sh   Ctrl _    ⇟    ←    ↓    →    ⌦    _    _    _
+_    _    _    _    _    _    _    _    _    _    _    _    _    _
+_    _    _    _    _    _    ⇞    ⇱    ↑    ⇲    ⇪    _    _    _
+_*   _    _    Sh   Ctrl _    ⇟    ←    ↓    →    ⌦    _    _    _
 _    _    _    _    _    _    _    ⌫    _    _    _    _    _
-_    _    _    _    _    ⏎
-⏎    _    _    _    _    _
+_    _    _*   _    _    ⏎    ⏎    _    _    _    _    _
 #colors
-f f f f f f f f f f f f f f
-f f f f f f f f f f f f f f
-r f f f f f f f f f f f f f
-f f f f f f f f f f f f
-f f r f f f f f
+f    f    f    f    f    f    f    f    f    f    f    f    f    f
+f    f    f    f    f    f    f    f    f    f    f    f    f    f
+r    f    f    f    f    f    f    f    f    f    f    f    f    f
+f    f    f    f    f    f    f    f    f    f    f    f
+f    f    r    f    f    f    f    f

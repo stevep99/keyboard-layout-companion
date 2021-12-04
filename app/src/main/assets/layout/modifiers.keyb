@@ -13,8 +13,7 @@ x x x x x x x x x x x x x x
 x x x x x x x x x x x x x x
 p x x x x x x x x x x x x x
 b x x x x x x x x x x b
-r c g y y y
-y y g c c r
+r c g y y y y y g c c r
 
 #layer: mod1
 #labels
@@ -43,8 +42,7 @@ x x x x x x x x x x x x x x
 x x x x x x x x x x x x x x
 c x x x x x x x x x x x x x
 b x x x x x x x x x x b
-r g p y y y
-y y b g c r
+r g p y y y y y b g c r
 
 #layer: mod3
 #labels
@@ -59,8 +57,7 @@ x x x x x x x x x x x x x x
 x x x x x x x x x x x x x x
 g x x x x x x x x x x x x x
 b x x x x x x x x x x b
-r c p y y y
-y y b g c r
+r c p y y y y y b g c r
 #layer: mod4
 #labels
 _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -74,5 +71,4 @@ x x x x x x x x x x x x x x
 x x x x x x x x x x x x x x
 x x x x x x x x x x x x x x
 b x x x x x x x x x x b
-r g p y y y
-b y g c c r
+r g p y y y b y g c c r

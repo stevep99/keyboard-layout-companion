@@ -27,7 +27,6 @@ class Key {
     var score = 0.0
     var distance = 0.0
     var highlight = false
-    var faded = false
     var type = KeyType.UNKNOWN
     val width = 1.0
     var x = 0.0
@@ -36,10 +35,6 @@ class Key {
 
     fun toggleHighlight() {
         highlight = !highlight
-    }
-
-    fun toggleFaded() {
-        faded = !faded
     }
 
     fun updateKeyId() {

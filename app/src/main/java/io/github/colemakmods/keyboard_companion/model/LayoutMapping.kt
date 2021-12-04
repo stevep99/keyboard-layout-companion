@@ -22,16 +22,14 @@ class LayoutMapping(private val layers: List<Layer>) {
                 arrayOf("TAB", "AD01", "AD02", "AD03", "AD04", "AD05", "AD06", "AD07", "AD08", "AD09", "AD10", "AD11", "AD12", "BSL"),
                 arrayOf("CAP", "AC01", "AC02", "AC03", "AC04", "AC05", "AC06", "AC07", "AC08", "AC09", "AC10", "AC11", "AC12", "RET"),
                 arrayOf("LSH", "AB01", "AB02", "AB03", "AB04", "AB05", "AB06", "AB07", "AB08", "AB09", "AB10", "RSH"),
-                arrayOf("LCT", "LWIN", "LALT", "JROM", "LSPC", "SPC"),
-                arrayOf("RSPC", "JHIR", "RALT", "RWIN", "MNU", "RCT")
+                arrayOf("LCT", "LWIN", "LALT", "JROM", "LSPC", "SPC", "RSPC", "JHIR", "RALT", "RWIN", "MNU", "RCT")
         )
         val DEFAULT_LABELS = arrayOf(
                 arrayOf("`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "⌫"),
                 arrayOf("⇥", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\"),
                 arrayOf("⇪", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "#", "⏎"),
                 arrayOf("⇧", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/", "⇧"),
-                arrayOf("Ctrl", "⊞", "Alt", "", "", ""),
-                arrayOf("", "", "Alt", "⊞", "☰", "Ctrl")
+                arrayOf("Ctrl", "⊞", "Alt", "", "", "", "", "", "Alt", "⊞", "☰", "Ctrl")
         )
 
         fun getKeyId(mapping: Array<Array<String>>, row: Int, col: Int): String? {

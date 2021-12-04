@@ -323,12 +323,13 @@ class KeyboardCompanionActivity : Activity() {
     }
 
     private fun getOutputImageFilename(): String {
+        val split = if (options.showSplit) "_split" else ""
         return if (currentLayout.layerCount > 1) {
             val layerPart = currentLayout.getLayerName(currentLayer).replace("\\s+".toRegex(), "_")
                 .lowercase()
-            "${currentLayout.id}_${currentGeometry.id}_$layerPart.png"
+            "${currentLayout.id}_${currentGeometry.id}${split}_$layerPart.png"
         } else {
-            "${currentLayout.id}_${currentGeometry.id}.png"
+            "${currentLayout.id}_${currentGeometry.id}$split.png"
         }
     }
 
@@ -348,9 +349,9 @@ class KeyboardCompanionActivity : Activity() {
         externalOutputDir()?.let { dir ->
             val saveFile = File(dir, filename)
             try {
-                val strm = FileOutputStream(saveFile)
-                destBitmap.compress(Bitmap.CompressFormat.PNG, 95, strm)
-                strm.close()
+                FileOutputStream(saveFile).use {
+                    destBitmap.compress(Bitmap.CompressFormat.PNG, 95, it)
+                }
                 Timber.d("saved keyboard image to $saveFile")
                 Toast.makeText(this, "Printed to $filename", Toast.LENGTH_SHORT).show()
             } catch (e: IOException) {

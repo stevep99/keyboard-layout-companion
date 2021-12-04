@@ -31,32 +31,32 @@ class KeyRenderOptionsSquare : KeyRenderOptions {
         }
     }
 
-    override fun selectKeyDrawable(keyspec: String): Int {
-        if (keyspec == "f") {
+    override fun selectKeyDrawable(keyspec: Char): Int {
+        if (keyspec == 'f') {
             return KeyRenderOptions.KEY_DRAWABLE_FINGER
-        } else if (keyspec == "c") {
+        } else if (keyspec == 'c') {
             return R.drawable.key_2_lc
-        } else if (keyspec == "C") {
+        } else if (keyspec == 'C') {
             return R.drawable.key_2_dc
-        } else if (keyspec == "p") {
+        } else if (keyspec == 'p') {
             return R.drawable.key_2_lp
-        } else if (keyspec == "P") {
+        } else if (keyspec == 'P') {
             return R.drawable.key_2_dp
-        } else if (keyspec == "g") {
+        } else if (keyspec == 'g') {
             return R.drawable.key_2_lg
-        } else if (keyspec == "G") {
+        } else if (keyspec == 'G') {
             return R.drawable.key_2_dg
-        } else if (keyspec == "b") {
+        } else if (keyspec == 'b') {
             return R.drawable.key_2_lb
-        } else if (keyspec == "B") {
+        } else if (keyspec == 'B') {
             return R.drawable.key_2_db
-        } else if (keyspec == "y") {
+        } else if (keyspec == 'y') {
             return R.drawable.key_2_ly
-        } else if (keyspec == "Y") {
+        } else if (keyspec == 'Y') {
             return R.drawable.key_2_dy
-        } else if (keyspec == "r") {
+        } else if (keyspec == 'r') {
             return R.drawable.key_2_lr
-        } else if (keyspec == "R") {
+        } else if (keyspec == 'R') {
             return R.drawable.key_2_dr
         }
         return R.drawable.key_2_x
