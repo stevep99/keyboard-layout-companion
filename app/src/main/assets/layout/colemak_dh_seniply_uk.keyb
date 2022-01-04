@@ -64,9 +64,9 @@ ff   ff   r    f    f    f    f    f    f    ff   ff   ff
 #layer: Function
 #labels
 _    _    _    _    _    _    _    _    _    _   _     _    _    _
-_    _    _    ⎈⇧F  Prt  _    F12  F7   F8   F9  @L3   _    _    _
-_    ⎇   ⊞    ⇧    ⎈    RA   F11  F4   F5   F6  @L2   _    _    _
-_    ⎈⇧Z  ⎈⇧X  ⎈⇧C  ⇧⇥   ⎈⇧V  F10  F1   F2   F3  @L1   _    _
+_    @L1  @L2  ⎈⇧F  Prt  _    F12  F7   F8   F9  ⎈+    _    _    _
+_    ⎇   ⊞    ⇧    ⎈    RA   F11  F4   F5   F6  ⎈-    _    _    _
+_    ⎈⇧Z  ⎈⇧X  ⎈⇧C  ⇧⇥   ⎈⇧V  F10  F1   F2   F3  ⎈0    _    _
 _    _    _*   _    _    _    ⏎    _    _*   _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
