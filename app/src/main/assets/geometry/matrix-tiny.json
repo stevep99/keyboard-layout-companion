@@ -41,11 +41,11 @@
       {"id":"AB10","finger":"9","x":10.5}
     ],
     "modifier_row": [
-      {"id":"LALT","finger":"4","x":3.5,"width":1.0},
-      {"id":"SPC", "finger":"5","x":4.5,"width":4.0},
-      {"id":"LSPC","finger":"4","x":4.5,"width":2.0},
-      {"id":"RSPC","finger":"5","x":6.5,"width":2.0},
-      {"id":"RALT","finger":"5","x":8.5,"width":1.0}
+      {"id":"LALT","finger":"4","x":4.0,"width":1.0},
+      {"id":"SPC", "finger":"5","x":5.0,"width":3.0},
+      {"id":"LSPC","finger":"4","x":5.0,"width":1.5},
+      {"id":"RSPC","finger":"5","x":6.5,"width":1.5},
+      {"id":"RALT","finger":"5","x":8.0,"width":1.0}
     ]
   }
 }
