@@ -7,8 +7,8 @@
 #layer: Base
 #labels
 `    1    2    3    4    5    6    7    8    9    0    -    =    ⌫
-⇥    q    w    f    p    b    j    l    u    y    '    [    ]
-\0   a    r    s    t    g    m    n    e    i    o    ;
+⇥    q    w    f    p    b    j    l    u    y    '    [    ]    _
+\0   a    r    s    t    g    m    n    e    i    o    ;    _    _
 ⇧    z    x    c    d    v    k    h    ,    .    /    ⇧
 Ctrl Alt  Ext  _    ⇧    ⇧    ␣    ␣    Sym  Alt  ⊞    Ctrl
 #colors
@@ -21,10 +21,10 @@ ff   ff   f    f    f    f    f    f    f    ff   ff   ff
 
 #layer: Symbols1
 #labels
-_    _    _    _    _    _    _    _    _    _    _    _    _
-_    !    @    ;    :    \_   =    7    8    9    +    _    _    _
-_    \\   |    {    (    [    *    4    5    6    -    _    _
-_    _    _    }    )    ]    0    1    2    3    /
+_    _    _    _    _    _    _    _    _    _    _    _    _    _
+_    !    @    #    :    ;    =    7    8    9    +    _    _    _
+_    \\   |    {    (    [    *    4    5    6    -    _    _    _
+_    -    \_   }    )    ]    0    1    2    3    /
 _    _    _    _    _    _    _    _    _*   _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
@@ -35,10 +35,10 @@ ff   ff   f    f    f    f    f    f    r    ff   ff   ff
 
 #layer: Symbols2
 #labels
-_    _    _    _    _    _    _    _    _    _    _    _    _
-_    ¹    ²    ³    €    🔆    ≠    &    `    ~    ±    _    _
-_    🔇    🔉    ▶    🔊    🔅    ×    $    %    ^    \_    _    _
-_    _    ⏮    ■   ⏭    _    °    !    @    #    ÷    _
+_    _    _    _    _    _    _    _    _    _    _    _    _    _
+_    @L1  m1   m↑   m2   _    ≠    &    `    ~    ±    _    _    _
+_    @L2  m←   m↓   m→   _    ×    $    %    ^    \_   _    _    _
+_    _    m4   m3   m5   _    °    !    @    #    ÷    _
 _    _    _    _    _*   _    _    _    _*   _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
@@ -50,9 +50,9 @@ ff   ff   f    f    r    f    f    f    r    ff   ff   ff
 #layer: Extend
 #labels
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
-_    Esc  Bk   ⎈F   Fw   Ins  ⇞    ⇱    ↑    ⇲    ⇪    _    _    _
+_    Esc  Bk   Fnd  Fw   Ins  ⇞    ⇱    ↑    ⇲    ⇪    _    _    _
 _    ⎇   ⊞    ⇧    ⎈    RA   ⇟    ←    ↓    →    ⌦    _    _    _
-_    ⎈Z   ⎈X   ⎈C   ⇥    ⎈V   ⏎    ⌫    ⇧    ⎈    Cmp  _    _
+_    Udo  Cut  Cpy  ⇥    Pst  Prt  ⌫    ⇧    ☰    ⏎    _
 _    _    _*   _    _    _    ⏎    _    _    _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
@@ -64,9 +64,9 @@ ff   ff   r    f    f    f    f    f    f    ff   ff   ff
 #layer: Function
 #labels
 _    _    _    _    _    _    _    _    _    _   _     _    _    _
-_    @L1  @L2  ⎈⇧F  Prt  _    F12  F7   F8   F9  ⎈+    _    _    _
-_    ⎇   ⊞    ⇧    ⎈    RA   F11  F4   F5   F6  ⎈-    _    _    _
-_    ⎈⇧Z  ⎈⇧X  ⎈⇧C  ⇧⇥   ⎈⇧V  F10  F1   F2   F3  ⎈0    _    _
+_    🔇    🔉    ▶    🔊  🔆    F12  F7   F8   F9  ⎈+    _    _    _
+_    ⎇   ⊞    ⇧    ⎈    🔅    F11  F4   F5   F6  ⎈-    _    _    _
+_    _    ⏮    ■   ⏭    _    F10  F1   F2   F3  ⎈0    _
 _    _    _*   _    _    _    ⏎    _    _*   _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
