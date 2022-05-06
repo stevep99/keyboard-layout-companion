@@ -52,7 +52,7 @@ ff   ff   f    f    r    f    f    f    r    ff   ff   ff
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
 _    Esc  Bk   Fnd  Fw   Ins  ⇞    ⇱    ↑    ⇲    ⇪    _    _    _
 _    ⎇   ⊞    ⇧    ⎈    RA   ⇟    ←    ↓    →    ⌦    _    _    _
-_    Udo  Cut  Cpy  ⇥    Pst  Prt  ⌫    ⇧    ☰    ⏎    _
+_    ⎈Z   ⎈X   ⎈C   ⊞    ⎈V   Prt  ⌫    ⇥    ☰    ⏎    _
 _    _    _*   _    _    _    ⏎    _    _    _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
@@ -64,9 +64,9 @@ ff   ff   r    f    f    f    f    f    f    ff   ff   ff
 #layer: Function
 #labels
 _    _    _    _    _    _    _    _    _    _   _     _    _    _
-_    🔇    🔉    ▶    🔊  🔆    F12  F7   F8   F9  ⎈+    _    _    _
-_    ⎇   ⊞    ⇧    ⎈    🔅    F11  F4   F5   F6  ⎈-    _    _    _
-_    _    ⏮    ■   ⏭    _    F10  F1   F2   F3  ⎈0    _
+_    ■    ⏮    ▶    ⏭    🔆    F12  F7   F8   F9  ⎈+    _    _    _
+_    ⎇    ⊞    ⇧    ⎈    🔅    F11  F4   F5   F6  ⎈-    _    _    _
+_    🔇    🔉    ⎈⇧C  🔊    ⎈⇧V  F10  F1   F2   F3  ⎈0    _
 _    _    _*   _    _    _    ⏎    _    _*   _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
