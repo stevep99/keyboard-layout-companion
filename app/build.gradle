@@ -2,12 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 32
+    namespace 'io.github.colemakmods.keyboard_companion'
 
     defaultConfig {
         applicationId "io.github.colemakmods.keyboard_companion"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 32
 
         versionCode 5
         versionName "1.05"
