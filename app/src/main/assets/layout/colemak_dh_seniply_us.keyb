@@ -22,9 +22,9 @@ ff   ff   f    f    f    f    f    f    f    ff   ff   ff
 #layer: Symbols1
 #labels
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
-_    !    @    #    :    ;    =    7    8    9    +    _    _    _
-_    \\   |    {    (    [    *    4    5    6    -    _    _    _
-_    -    \_   }    )    ]    0    1    2    3    /
+_    !    @    #    $    %    =    7    8    9    +    _    _    _
+_    ;    :    {    (    [    *    4    5    6    -    _    _    _
+_    ^    &    }    )    ]    0    1    2    3    /    _
 _    _    _    _    _    _    _    _    _*   _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
@@ -36,9 +36,9 @@ ff   ff   f    f    f    f    f    f    r    ff   ff   ff
 #layer: Symbols2
 #labels
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
-_    @L1  m1   m↑   m2   _    ≠    &    `    ~    ±    _    _    _
-_    @L2  m←   m↓   m→   _    ×    $    %    ^    \_   _    _    _
-_    _    m4   m3   m5   _    °    !    @    #    ÷    _
+_    ¹    ²    ³    €    _    m⇞   m1   m↑   m2   @L1  _    _    _
+_    _    _    \    |    _    m⇟   m←   m↓   m→   _    _    _    _
+_    `    ~    ¢    \_   _    _    m4   m3   m5   @L2  _
 _    _    _    _    _*   _    _    _    _*   _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
