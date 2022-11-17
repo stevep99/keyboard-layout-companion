@@ -11,7 +11,7 @@ android {
         targetSdkVersion 32
 
         versionCode 5
-        versionName "1.05"
+        versionName "1.06"
         setProperty("archivesBaseName", "companion-$versionName")
     }
 
