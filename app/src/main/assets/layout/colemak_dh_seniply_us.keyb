@@ -19,12 +19,12 @@ ff   f    f    f    f    f    f    f    f    f    f    ff
 ff   ff   f    f    f    f    f    f    f    ff   ff   ff
 #lct lwin lalt jrom lspc spc  rspc jhir ralt rwin mnu  rct
 
-#layer: Symbols1
+#layer: Symbols
 #labels
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
-_    !    @    #    $    %    =    7    8    9    +    _    _    _
-_    ;    :    {    (    [    *    4    5    6    -    _    _    _
-_    ^    &    }    )    ]    0    1    2    3    /    _
+_    !    @    #    $    %    =    `    :    ;    +    _    _    _
+_    ⎇    ⊞    ⇧    ⎈    ^    *    (    {    [    -    _    _    _
+_    _    _    \\   |    &    ~    )    }    ]    \_   _
 _    _    _    _    _    _    _    _    _*   _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
@@ -33,17 +33,17 @@ ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
 ff   f    f    f    f    f    f    f    f    f    f    ff
 ff   ff   f    f    f    f    f    f    r    ff   ff   ff
 
-#layer: Symbols2
+#layer: Numbers
 #labels
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
-_    ¹    ²    ³    €    _    m⇞   m1   m↑   m2   @L1  _    _    _
-_    _    _    \    |    _    m⇟   m←   m↓   m→   _    _    _    _
-_    `    ~    ¢    \_   _    _    m4   m3   m5   @L2  _
-_    _    _    _    _*   _    _    _    _*   _    _    _
+_    _    _    _    _    NLk  =    7    8    9    +    _    _    _
+_*   ⎇    ⊞    ⇧    ⎈    RA   *    4    5    6    -    _    _    _
+_    _    ☰    ⇥    ⌫    ⏎    0    1    2    3    /    _
+_    _    _    _    _*   _*   _    _    _*   _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
 ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
-ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
+f    f    f    f    f    f    f    f    f    f    f    ff   ff   ff
 ff   f    f    f    f    f    f    f    f    f    f    ff
 ff   ff   f    f    r    f    f    f    r    ff   ff   ff
 
@@ -51,8 +51,8 @@ ff   ff   f    f    r    f    f    f    r    ff   ff   ff
 #labels
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
 _    Esc  Bk   Fnd  Fw   Ins  ⇞    ⇱    ↑    ⇲    ⇪    _    _    _
-_    ⎇   ⊞    ⇧    ⎈    RA   ⇟    ←    ↓    →    ⌦    _    _    _
-_    ⎈Z   ⎈X   ⎈C   ⊞    ⎈V   Prt  ⌫    ⇥    ☰    ⏎    _
+_    ⎇    ⊞    ⇧    ⎈    RA   ⇟    ←    ↓    →    ⌦    _    _    _
+_    ⎈Z   ⎈X   ⎈C   ⊞    ⎈V   ⏎    ⌫    ⇥    ☰    Prt  _
 _    _    _*   _    _    _    ⏎    _    _    _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
@@ -63,10 +63,10 @@ ff   ff   r    f    f    f    f    f    f    ff   ff   ff
 
 #layer: Function
 #labels
-_    _    _    _    _    _    _    _    _    _   _     _    _    _
-_    ■    ⏮    ▶    ⏭    🔆    F12  F7   F8   F9  ⎈+    _    _    _
-_    ⎇   ⊞    ⇧    ⎈    🔅    F11  F4   F5   F6  ⎈-    _    _    _
-_    🔇    🔉    ⎈⇧C  🔊    ⎈⇧V  F10  F1   F2   F3  ⎈0    _
+_    _    _    _    _    _    _    _    _    _    _    _    _    _
+_    ■    ⏮    ▶    ⏭    🔆    F12  F7   F8   F9   SLk  _    _    _
+_    ⎇    ⊞    ⇧    ⎈    🔅    F11  F4   F5   F6   @L0  _    _    _
+_    🔇    🔉    ⎈⇧C  🔊    ⎈⇧V  F10  F1   F2   F3   @L1  _
 _    _    _*   _    _    _    ⏎    _    _*   _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
