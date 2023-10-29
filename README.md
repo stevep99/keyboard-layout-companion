@@ -5,6 +5,8 @@ Keyboard Layout Companion is a tool for visualizing and generating images of alt
 
 **[Download from Google Play](http://play.google.com/store/apps/details?id=io.github.colemakmods.keyboard_companion)**
 
+**[Download APK direct](https://github.com/stevep99/keyboard-layout-companion/releases)**
+
 See the [info.html](https://htmlpreview.github.io/?https://github.com/stevep99/keyboard-layout-companion/blob/master/app/src/main/assets/info.html) page for details.
 
 ## Building
