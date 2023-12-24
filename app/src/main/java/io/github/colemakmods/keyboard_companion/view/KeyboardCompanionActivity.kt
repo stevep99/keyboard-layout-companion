@@ -1,36 +1,41 @@
 package io.github.colemakmods.keyboard_companion.view
 
 import android.Manifest
-import android.app.Activity
-import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.os.Environment
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.webkit.WebView
-import android.widget.*
-import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.FrameLayout
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.key
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import io.github.colemakmods.keyboard_companion.*
-import io.github.colemakmods.keyboard_companion.model.Geometry
-import io.github.colemakmods.keyboard_companion.model.GeometryInitializer
-import io.github.colemakmods.keyboard_companion.model.Layout
-import io.github.colemakmods.keyboard_companion.model.LayoutInitializer
+import io.github.colemakmods.keyboard_companion.R
+import io.github.colemakmods.keyboard_companion.view.dialog.InfoDialog
+import io.github.colemakmods.keyboard_companion.view.dialog.SettingsDialog
 import timber.log.Timber
-import java.io.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.FileWriter
+import java.io.IOException
+import java.io.PrintWriter
+
 
 /**
  * Created by steve on 27/10/2014.
  */
-class KeyboardCompanionActivity : Activity() {
+class KeyboardCompanionActivity : ComponentActivity() {
 
     companion object {
-        private const val DEFAULT_LAYOUT_OPTION = "Colemak-DH"
-        private const val FIND_OPTIMAL_FINGER = false
         private const val SCALE_BITMAP = false
         private const val OUTPUT_BITMAP_WIDTH = 1048
 
@@ -38,110 +43,25 @@ class KeyboardCompanionActivity : Activity() {
         private const val PERMISSION_REQUEST_SAVE_TEXT = 1002
     }
 
-    private val KEY_FILTER_OPTIONS = arrayOf(
-            "All keys",  //0
-            "All keys except bottom row",  //1
-            "Character keys",  //2
-            "Main zone",  //3
-            "Letters & punctuation",  //4
-            "Letters only" //5
-    )
-
-    private lateinit var keyboardSplit: CheckBox
-    private lateinit var layerPanel: View
-    private lateinit var layerName: TextView
-    private lateinit var geometryList: List<Geometry>
-    private lateinit var layoutList: List<Layout>
-    private lateinit var currentLayout: Layout
-    private lateinit var currentGeometry: Geometry
-    private var currentLayer = 0
-    private val options = Options()
+    private val viewModel by viewModels<MainViewModel>()
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.keyboard)
-
-        val gi = GeometryInitializer()
-        gi.init(this, externalGeometryDir())
-        geometryList = gi.getGeometryList()
-        if (geometryList.isEmpty()) {
-            Timber.e("Unable to initialize geometry files")
-            return
-        }
-
-        Timber.d("Initialized ${geometryList.size} geometry files")
-        val li = LayoutInitializer()
-        li.init(this, geometryList, externalLayoutDir())
-        layoutList = li.getLayouts()
-        if (layoutList.isEmpty()) {
-            Timber.e("Unable to initialize layout files")
-            return
-        }
-        var initialLayoutSelection = 0
-        for (i in layoutList.indices) {
-            if (layoutList[i].name == DEFAULT_LAYOUT_OPTION) {
-                currentLayout = layoutList[i]
-                initialLayoutSelection = i
-            }
-        }
-        currentGeometry = currentLayout.compatibleGeometries[0]
-        Timber.d("Initialized ${layoutList.size} layout files")
-
-        createModeSpinner()
-
-        val keyboardShowStyles = findViewById<CheckBox>(R.id.keyboardShowStyles)
-        keyboardShowStyles.setOnCheckedChangeListener { compoundButton, _ ->
-            options.showStyles = compoundButton.isChecked
-            refreshKeyboard()
-        }
-        options.showStyles = keyboardShowStyles.isChecked
-        val keyboardShowFingers = findViewById<CheckBox>(R.id.keyboardShowFingers)
-        keyboardShowFingers.setOnCheckedChangeListener { compoundButton, _ ->
-            options.showFingers = compoundButton.isChecked
-            refreshKeyboard()
-        }
-        options.showFingers = keyboardShowFingers.isChecked
-        keyboardSplit = findViewById(R.id.keyboardSplit)
-        keyboardSplit.setOnCheckedChangeListener { compoundButton, _ ->
-            options.showSplit = compoundButton.isChecked
-            refreshKeyboard()
-        }
-        options.showSplit = keyboardSplit.isChecked
-        layerPanel = findViewById(R.id.layerPanel)
-        layerName = findViewById(R.id.layerName)
-
-        val layerPrevious = findViewById<ImageView>(R.id.layerPrevious)
-        layerPrevious.setOnClickListener {
-            --currentLayer
-            if (currentLayer < 0) {
-                currentLayer = currentLayout.layerCount - 1
-            }
-            refreshKeyboard()
-        }
-
-        val layerNext = findViewById<ImageView>(R.id.layerNext)
-        layerNext.setOnClickListener {
-            currentLayout
-            ++currentLayer
-            if (currentLayer >= currentLayout.layerCount) {
-                currentLayer = 0
-            }
-            refreshKeyboard()
-        }
-
-        val keyboardLayoutSpinner = findViewById<View>(R.id.keyboardLayoutSpinner) as Spinner
-        createLayoutSpinner(keyboardLayoutSpinner, initialLayoutSelection)
-
-        createKeyFilterSpinner()
+        setDefaultContent()
     }
 
-    fun getVersionText(): String {
-        try {
-            val pInfo = packageManager.getPackageInfo(packageName, 0)
-            return "v${pInfo.versionName}"
-        } catch (e: PackageManager.NameNotFoundException) {
-            Timber.e(e, "version lookup failed")
-            return ""
+    private fun setDefaultContent() {
+        setContent {
+            MaterialTheme {
+                InfoDialog(viewModel)
+                SettingsDialog(viewModel)
+                Column {
+                    ControlsPanel(viewModel)
+                    key(viewModel.drawRefreshState) {
+                        KeyboardPanel(viewModel)
+                    }
+                }
+            }
         }
     }
 
@@ -154,11 +74,11 @@ class KeyboardCompanionActivity : Activity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_info -> {
-                showInfo()
+                viewModel.showInfoDialog = true
                 true
             }
             R.id.action_settings -> {
-                showSettings()
+                viewModel.showSettingsDialog = true
                 true
             }
             R.id.action_save -> {
@@ -173,101 +93,6 @@ class KeyboardCompanionActivity : Activity() {
         }
     }
 
-    private fun createModeSpinner() {
-        val keyboardModeSpinner = findViewById<Spinner>(R.id.modeSpinner)
-        val keyDisplayAdapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, Options.Mode.values())
-        keyDisplayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        keyboardModeSpinner.adapter = keyDisplayAdapter
-        keyboardModeSpinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                options.mode = Options.Mode.values()[position]
-                val layoutSpinnerEnabled = options.mode === Options.Mode.MODE_DISPLAY
-                val keyboardLayoutSpinner = findViewById<Spinner>(R.id.keyboardLayoutSpinner)
-                keyboardLayoutSpinner.isEnabled = layoutSpinnerEnabled
-                createGeometrySpinner()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-    }
-
-    private fun createLayoutSpinner(keyboardLayoutSpinner: Spinner, initialSelection: Int) {
-        val keyboardLayoutAdapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, layoutList)
-        keyboardLayoutAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        keyboardLayoutSpinner.adapter = keyboardLayoutAdapter
-        keyboardLayoutSpinner.setSelection(initialSelection)
-        keyboardLayoutSpinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                currentLayout = layoutList[position]
-                currentLayer = 0
-                createGeometrySpinner()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-    }
-
-    private fun createGeometrySpinner() {
-        val keyboardGeometrySpinner = findViewById<Spinner>(R.id.keyboardGeometrySpinner)
-        val filteredGeometryList = if (options.mode === Options.Mode.MODE_DISPLAY) currentLayout.compatibleGeometries else geometryList
-        val keyboardGeometryAdapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, filteredGeometryList)
-        keyboardGeometryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        keyboardGeometrySpinner.adapter = keyboardGeometryAdapter
-        keyboardGeometrySpinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                currentGeometry = keyboardGeometryAdapter.getItem(position)!!
-                keyboardSplit.isEnabled = currentGeometry.split == Geometry.Split.SPLITTABLE
-                if (currentGeometry.split == Geometry.Split.ALWAYS) {
-                    keyboardSplit.isChecked = true
-                } else if (currentGeometry.split == Geometry.Split.NEVER) {
-                    keyboardSplit.isChecked = false
-                }
-                refreshKeyboard()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-    }
-
-    private fun createKeyFilterSpinner() {
-        val keyboardKeyFilter = findViewById<Spinner>(R.id.keyboardKeyFilter)
-        val keyFilterAdapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, KEY_FILTER_OPTIONS)
-        keyFilterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        keyboardKeyFilter.adapter = keyFilterAdapter
-        keyboardKeyFilter.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                options.keyFilterOption = position
-                refreshKeyboard()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-    }
-
-    private fun refreshKeyboard() {
-        Timber.d("refreshKeyboard ${options.mode} ${currentLayout.name} ${currentGeometry.title}")
-        val showLayerSelector: Boolean
-        if (options.mode === Options.Mode.MODE_DISPLAY) {
-            showLayerSelector = currentLayout.layerCount > 1
-            layerPanel.visibility = if (showLayerSelector) View.VISIBLE else View.INVISIBLE
-            layerName.text = currentLayout.getLayerName(currentLayer)
-            currentLayout.dumpLayout(PrintWriter(System.out))
-        } else {
-            currentGeometry.updateDistancesScores(FIND_OPTIMAL_FINGER)
-        }
-        val showMultiLayers = currentLayout.isLayerMulti(currentLayer)
-        var mainLayer = if (showMultiLayers) currentLayer + 1 else currentLayer
-
-        val keyboardView = findViewById<LinearLayout>(R.id.keyboardView)
-        val keyboardViewCreator = KeyboardViewCreator(this) { refreshKeyboard() }
-        keyboardViewCreator.createKeyViews(keyboardView, currentGeometry, currentLayout,
-                mainLayer, showMultiLayers, false, options)
-    }
-
     private fun outputTextKeyboard() {
         if (ContextCompat.checkSelfPermission(this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -280,13 +105,15 @@ class KeyboardCompanionActivity : Activity() {
 
     private fun outputTextKeyboardActual() {
         externalOutputDir()?.let { dir ->
+            val currentLayout = viewModel.currentLayout ?: return
+            val currentGeometry = viewModel.currentGeometry ?: return
             val filename = "${currentLayout.id}_${currentGeometry.id}.dat"
             val saveFile = File(dir, filename)
 
             try {
                 val writer = PrintWriter(FileWriter(saveFile))
                 writer.use {
-                    currentGeometry.updateDistancesScores(FIND_OPTIMAL_FINGER)
+                    currentGeometry.updateDistancesScores()
                     currentLayout.dumpAll(it, currentGeometry)
                 }
                 Timber.d("Saved keyboard text file to $saveFile")
@@ -309,23 +136,41 @@ class KeyboardCompanionActivity : Activity() {
     }
 
     private fun printKeyboardActual() {
-        Timber.d("printKeyboard ${currentGeometry.title}  ${currentLayout.name}")
-        val showMultiLayers = currentLayout.isLayerMulti(currentLayer)
-        var mainLayer = if (showMultiLayers) currentLayer + 1 else currentLayer
-
-        val keyboardPrintView = findViewById<LinearLayout>(R.id.keyboardPrintView)
-        val keyboardViewCreator = KeyboardViewCreator(this, null)
-        keyboardViewCreator.createKeyViews(keyboardPrintView, currentGeometry, currentLayout,
-            mainLayer, showMultiLayers, true, options)
-        keyboardPrintView.post {
-            save(keyboardPrintView, getOutputImageFilename())
+        val rootView = FrameLayout(this)
+        val keyboardPrintView = ComposeView(this)
+        keyboardPrintView.apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                MaterialTheme {
+                    KeyboardPanel(viewModel)
+                }
+            }
+            rootView.addView(this)
         }
+        val progressView = ComposeView(this)
+        progressView.apply {
+            setContent {
+                MaterialTheme {
+                    ProgressPanel()
+                }
+            }
+            rootView.addView(this)
+        }
+        setContentView(rootView)
+
+        keyboardPrintView.postDelayed( {
+            save(keyboardPrintView, getOutputImageFilename())
+            setDefaultContent()
+
+        }, 500L)
     }
 
     private fun getOutputImageFilename(): String {
-        val split = if (options.showSplit) "_split" else ""
+        val currentLayout = viewModel.currentLayout ?: return "?"
+        val currentGeometry = viewModel.currentGeometry ?: return "?"
+        val split = if (viewModel.options.showSplit) "_split" else ""
         return if (currentLayout.layerCount > 1) {
-            val layerPart = currentLayout.getLayerName(currentLayer).replace("\\s+".toRegex(), "_")
+            val layerPart = currentLayout.getLayerName(viewModel.currentLayer).replace("\\s+".toRegex(), "_")
                 .lowercase()
             "${currentLayout.id}_${currentGeometry.id}${split}_$layerPart.png"
         } else {
@@ -352,7 +197,7 @@ class KeyboardCompanionActivity : Activity() {
                 FileOutputStream(saveFile).use {
                     destBitmap.compress(Bitmap.CompressFormat.PNG, 95, it)
                 }
-                Timber.d("saved keyboard image to $saveFile")
+                Timber.d("Saved keyboard image to $saveFile")
                 Toast.makeText(this, "Printed to $filename", Toast.LENGTH_SHORT).show()
             } catch (e: IOException) {
                 Timber.w(e, "Unable to save keyboard image file")
@@ -361,50 +206,10 @@ class KeyboardCompanionActivity : Activity() {
         }
     }
 
-    private fun showInfo() {
-        AlertDialog.Builder(this)
-                .setView(R.layout.dlg_info)
-                .setPositiveButton(android.R.string.ok) { dlg, _ -> dlg.dismiss() }
-                .create()
-                .also { dlg ->
-                    dlg.show()
-                    dlg.findViewById<TextView>(R.id.versionTextView).let {
-                        it.text = getVersionText()
-                    }
-                    dlg.findViewById<WebView>(R.id.infoWebView).let {
-                        it.settings.textZoom = 80
-                        it.loadUrl("file:///android_asset/info.html")
-                    }
-                }
-    }
-
-    private fun showSettings() {
-        AlertDialog.Builder(this)
-                .setTitle(R.string.settings)
-                .setView(R.layout.dlg_settings)
-                .setPositiveButton(android.R.string.ok) { dlg, _ ->
-                    val settingsLayout = (dlg as AlertDialog).findViewById<SettingsLayout>(R.id.settingsLayout)
-                    val keyGraphicSetting = settingsLayout.getKeyGraphicSetting()
-                    if (options.keyRenderOptions.javaClass != keyGraphicSetting) {
-                        options.keyRenderOptions = keyGraphicSetting.newInstance()
-                        refreshKeyboard()
-                    }
-                }
-                .create()
-                .also { dlg ->
-                    dlg.show()
-                    dlg.findViewById<SettingsLayout>(R.id.settingsLayout)
-                            .putOptions(options)
-                }
-    }
-
     private fun externalOutputDir() = getExternalFilesDir("output")
 
-    private fun externalGeometryDir() = getExternalFilesDir("geometry")
-
-    private fun externalLayoutDir() = getExternalFilesDir("layout")
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             PERMISSION_REQUEST_SAVE_IMAGE -> {
                 if (permissions[0] == Manifest.permission.WRITE_EXTERNAL_STORAGE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

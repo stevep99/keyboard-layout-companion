@@ -7,16 +7,15 @@ import io.github.colemakmods.keyboard_companion.model.LayoutMapping.LayoutMappin
 import timber.log.Timber
 import java.io.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by steve on 15/07/15.
  */
-class LayoutInitializer {
-    private var geometryList: List<Geometry> = ArrayList()
-    private val layouts: MutableList<Layout> = ArrayList()
 
-    fun init(context: Context, geometryList: List<Geometry>, layoutDir: File?) {
-        this.geometryList = geometryList
+class LayoutInitializer(val geometryList: List<Geometry>) {
+    fun loadData(context: Context, layoutDir: File?): ArrayList<Layout> {
+        val layouts = ArrayList<Layout>()
 
         //load in available layout files
         context.assets.list("layout")
@@ -25,7 +24,9 @@ class LayoutInitializer {
                     Timber.d("Loading layout file $fileName")
                     try {
                         context.assets.open("layout/$fileName").use {
-                            initLayout(it, fileName)
+                            layouts.add(
+                                initLayout(it, fileName)
+                            )
                         }
                     } catch (ex: IOException) {
                         Timber.w(ex, "Error reading layout file $fileName")
@@ -37,7 +38,10 @@ class LayoutInitializer {
                     Timber.d("Loading layout file $fileName")
                     try {
                         FileInputStream(File(layoutDir, fileName)).use {
-                            initLayout(it, fileName)
+                            layouts.add(
+                                initLayout(it, fileName)
+                            )
+
                         }
                     } catch (ex: IOException) {
                         Timber.w(ex, "Error reading layout file $fileName")
@@ -49,14 +53,14 @@ class LayoutInitializer {
         //add basic layout with key IDs only
         val calcLayout = Layout(Layout.LAYOUT_KEYID, "KeyID", geometryList, createLabelLayer())
         layouts.add(calcLayout)
+        return layouts
     }
 
     @Throws(IOException::class)
-    private fun initLayout(ins: InputStream, fileName: String) {
+    private fun initLayout(ins: InputStream, fileName: String): Layout {
         val reader = BufferedReader(InputStreamReader(ins))
         val defaultName = fileName.substring(0, fileName.lastIndexOf("."))
-        val layout = parseLayout(defaultName, reader)
-        layouts.add(layout)
+        return parseLayout(defaultName, reader)
     }
 
     @Throws(IOException::class)
@@ -91,7 +95,7 @@ class LayoutInitializer {
                         try {
                             val fingerConfig = FingerConfig.valueOf(configId)
                             compatibleGeometries.addAll(Geometry.findByFingers(geometryList, fingerConfig))
-                            Collections.sort(compatibleGeometries)
+                            compatibleGeometries.sort()
                         } catch (ex: Exception) {
                             Timber.w(ex,"Invalid FingerConfig for $name:$line")
                         }
@@ -123,8 +127,5 @@ class LayoutInitializer {
         return Layout(id, name, compatibleGeometries, mapping)
     }
 
-    fun getLayouts(): List<Layout> {
-        return layouts
-    }
 
 }

@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "io.github.colemakmods.keyboard_companion"
-        compileSdk 33
-        targetSdkVersion 33
+        compileSdk 34
+        targetSdkVersion 34
         minSdkVersion 21
 
         versionCode 7
@@ -15,8 +15,16 @@ android {
         setProperty("archivesBaseName", "companion-$versionName")
     }
 
+    buildFeatures {
+        compose true
+    }
+
     kotlinOptions {
         jvmTarget = '11'
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.1'
     }
 
     compileOptions {
@@ -58,9 +66,24 @@ repositories {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation  group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.3'
-    implementation  group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.10.3'
-    implementation  group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.3'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
     implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation "androidx.core:core-ktx:1.5.0"
+    implementation "androidx.core:core-ktx:1.12.0"
+
+    def composeBom = platform('androidx.compose:compose-bom:2023.10.01')
+    implementation(composeBom)
+    implementation "androidx.compose.runtime:runtime"
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.foundation:foundation"
+    implementation "androidx.compose.foundation:foundation-layout"
+    implementation "androidx.compose.material3:material3"
+    implementation "androidx.compose.material:material-icons-extended"
+    implementation "androidx.compose.ui:ui-tooling"
+    implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation 'androidx.activity:activity-compose:1.8.2'
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "androidx.activity:activity-ktx:1.6.1"
 }

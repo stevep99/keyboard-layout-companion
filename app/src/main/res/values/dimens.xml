@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="key_size_disp">32dp</dimen>
-    <dimen name="key_text_size_disp_single">16sp</dimen>
-    <dimen name="key_text_size_disp_many">14sp</dimen>
+    <dimen name="key_text_size_single_disp">16sp</dimen>
+    <dimen name="key_text_size_many_disp">14sp</dimen>
     <integer name="key_text_shadow_size_disp">1</integer>
-    <dimen name="key_text_small_size_disp">9sp</dimen>
-    <dimen name="key_text_small_margin_horiz_disp">3dp</dimen>
+    <dimen name="key_text_small_size_disp">8sp</dimen>
+    <dimen name="key_text_small_margin_horiz_disp">2dp</dimen>
     <dimen name="key_text_small_margin_vert_disp">1dp</dimen>
 
     <dimen name="key_size_print">64px</dimen>
-    <dimen name="key_text_size_print_single">32px</dimen>
-    <dimen name="key_text_size_print_many">28px</dimen>
+    <dimen name="key_text_size_single_print">32px</dimen>
+    <dimen name="key_text_size_many_print">28px</dimen>
     <integer name="key_text_shadow_size_print">1</integer>
-    <dimen name="key_text_small_size_print">18px</dimen>
-    <dimen name="key_text_small_margin_print_horiz">6px</dimen>
-    <dimen name="key_text_small_margin_print_vert">3px</dimen>
+    <dimen name="key_text_small_size_print">16px</dimen>
+    <dimen name="key_text_small_margin_horiz_print">4px</dimen>
+    <dimen name="key_text_small_margin_vert_print">3px</dimen>
 
 </resources>

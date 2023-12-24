@@ -13,16 +13,17 @@ import java.util.*
  */
 class GeometryInitializer {
 
-    private val geometryList = ArrayList<Geometry>()
-
-    fun init(context: Context, geometryDir: File?) {
+    fun loadData(context: Context, geometryDir: File?): List<Geometry> {
+        val geometryList = ArrayList<Geometry>()
         context.assets.list("geometry")
                 ?.filter { it.endsWith(".json") }
                 ?.forEach { fileName ->
                     Timber.d("loading geometry file $fileName")
                     try {
                         context.assets.open("geometry/$fileName").use {
-                            initGeometry(it)
+                            geometryList.add(
+                                initGeometry(it)
+                            )
                         }
                     } catch (ex: IOException) {
                         Timber.w(ex, "Error reading geometry file $fileName")
@@ -34,26 +35,25 @@ class GeometryInitializer {
                     Timber.d("loading geometry file $fileName")
                     try {
                         FileInputStream(File(geometryDir, fileName)).use {
-                            initGeometry(it)
+                            geometryList.add(
+                                initGeometry(it)
+                            )
                         }
                     } catch (ex: IOException) {
                         Timber.w(ex, "Error reading geometry file $fileName")
                     }
                 }
         geometryList.sort()
+        return geometryList
     }
 
     @Throws(IOException::class)
-    private fun initGeometry(ins: InputStream) {
+    private fun initGeometry(ins: InputStream): Geometry {
         val geometry = Geometry.parse(ins)
         geometry.updateKeyIds()
         geometry.updateKeyCoordinates()
         geometry.updateHomePosition()
-        geometryList.add(geometry)
-    }
-
-    fun getGeometryList(): List<Geometry> {
-        return geometryList
+        return geometry
     }
 
 }

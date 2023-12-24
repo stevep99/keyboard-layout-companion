@@ -28,9 +28,9 @@ class Key {
     var distance = 0.0
     var highlight = false
     var type = KeyType.UNKNOWN
-    val width = 1.0
-    var x = 0.0
-    var y = 0.0
+    val width = 1.0f
+    var x = 0.0f
+    var y = 0.0f
     private var touchRect: Rectangle? = null
 
     fun toggleHighlight() {

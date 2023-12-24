@@ -12,6 +12,8 @@ import java.util.*
  * Created by steve on 15/07/15.
  */
 class Geometry : Comparable<Geometry> {
+    private val FIND_OPTIMAL_FINGER = false
+
     private val INDEX_OFFSET_10DEG = Pair(0.040, 0.324)
     private val MIDDLE_OFFSET_10DEG = Pair(-0.031, -0.164)
     private val RING_OFFSET_10DEG = Pair(0.0, -0.075)
@@ -103,7 +105,7 @@ class Geometry : Comparable<Geometry> {
     fun updateKeyCoordinates() {
         for (row in keys.keys) {
             for (key in keys[row] ?: error("updateKeyCoordinates error")) {
-                key.y = row.ordinal.toDouble()
+                key.y = row.ordinal.toFloat()
             }
         }
     }
@@ -158,11 +160,11 @@ class Geometry : Comparable<Geometry> {
         }
     }
 
-    fun updateDistancesScores(findOptimalFinger: Boolean) {
+    fun updateDistancesScores() {
         if (!scoresCalculated) {
             for (row in keys.keys) {
                 for (key in keys[row] ?: error("updateDistancesScores error")) {
-                    key.updateDistanceScore(this, findOptimalFinger)
+                    key.updateDistanceScore(this, FIND_OPTIMAL_FINGER)
                 }
             }
             scoresCalculated = true
