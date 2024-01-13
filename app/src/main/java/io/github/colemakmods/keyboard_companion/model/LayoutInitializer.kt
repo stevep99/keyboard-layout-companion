@@ -4,6 +4,7 @@ import android.content.Context
 import io.github.colemakmods.keyboard_companion.model.Geometry.FingerConfig
 import io.github.colemakmods.keyboard_companion.model.LayoutMapping.Companion.createLabelLayer
 import io.github.colemakmods.keyboard_companion.model.LayoutMapping.LayoutMappingBuilder
+import io.github.colemakmods.keyboard_companion.util.StringUtil
 import timber.log.Timber
 import java.io.*
 import java.util.*
@@ -51,7 +52,7 @@ class LayoutInitializer(val geometryList: List<Geometry>) {
         layouts.sort()
 
         //add basic layout with key IDs only
-        val calcLayout = Layout(Layout.LAYOUT_KEYID, "KeyID", geometryList, createLabelLayer())
+        val calcLayout = Layout(Layout.LAYOUT_KEYID, "template", "KeyID", geometryList, createLabelLayer())
         layouts.add(calcLayout)
         return layouts
     }
@@ -71,26 +72,29 @@ class LayoutInitializer(val geometryList: List<Geometry>) {
         val compatibleGeometries: MutableList<Geometry> = ArrayList(geometryList)
         var row = 0
         var line: String?
-        var id: String? = null
-        var mode: String? = null
+        var id = ""
+        var type = ""
+        var mode = ""
         do {
             line = reader.readLine()
             if (line == null) break
             if (line.startsWith("#")) {
                 val data = line.split(":".toRegex()).toTypedArray()
                 mode = data[0].trim { it <= ' ' }
-                val arg = if (data.size >= 2) data[1].trim { it <= ' ' } else null
+                val arg = if (data.size >= 2) data[1].trim { it <= ' ' } else ""
                 if ("#id" == mode) {
                     id = arg
+                } else if ("#type" == mode) {
+                    type = arg
                 } else if ("#layer" == mode) {
                     layoutMappingBuilder.addLayer(arg)
                 } else if ("#multilayer" == mode) {
                     layoutMappingBuilder.addLayer(arg, true)
                 } else if ("#name" == mode) {
-                    name = arg ?: defaultName
+                    name = arg.ifBlank { defaultName }
                 } else if ("#config" == mode) {
                     compatibleGeometries.clear()
-                    val configIds = arg!!.split(" +".toRegex()).toTypedArray()
+                    val configIds = arg.split(" +".toRegex()).toTypedArray()
                     for (configId in configIds) {
                         try {
                             val fingerConfig = FingerConfig.valueOf(configId)
@@ -124,7 +128,8 @@ class LayoutInitializer(val geometryList: List<Geometry>) {
             }
         } while (line != null)
         val mapping = layoutMappingBuilder.toLayoutMapping()
-        return Layout(id, name, compatibleGeometries, mapping)
+        id = id.ifBlank { StringUtil.nameToId(name) }
+        return Layout(id, type, name, compatibleGeometries, mapping)
     }
 
 

@@ -1,6 +1,8 @@
 #name: Modifiers
+@
 #mapping: FORMAT_FULL
 #layer: mod0
+#type: template
 #labels
 _ _ _ _ _ _ _ _ _ _ _ _ _ _
 _ _ _ _ _ _ _ _ _ _ _ _ _ _

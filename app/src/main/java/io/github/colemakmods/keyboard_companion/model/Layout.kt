@@ -1,6 +1,5 @@
 package io.github.colemakmods.keyboard_companion.model
 
-import io.github.colemakmods.keyboard_companion.util.StringUtil
 import timber.log.Timber
 import java.io.PrintWriter
 
@@ -8,7 +7,8 @@ import java.io.PrintWriter
  * Created by steve on 15/07/15.
  */
 class Layout(
-        idParam: String?,
+        val id: String,
+        val type: String,
         val name: String,
         val compatibleGeometries: List<Geometry>,
         val mapping: LayoutMapping
@@ -17,8 +17,6 @@ class Layout(
     companion object {
         const val LAYOUT_KEYID = "KEYID"
     }
-
-    val id: String = idParam ?: StringUtil.nameToId(name)
 
     val layerCount: Int
         get() = mapping.getLayerCount()
@@ -108,7 +106,8 @@ class Layout(
     }
 
     override fun compareTo(other: Layout): Int {
-        return this.name.compareTo(other.name)
+        val typeCompare = this.type.compareTo(other.type)
+        return if (typeCompare == 0) this.name.compareTo(other.name) else typeCompare
     }
 
 }
