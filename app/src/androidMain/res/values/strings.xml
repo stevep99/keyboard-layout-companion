@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_title">Keyboard Layout Companion</string>
+    <string name="mode">Mode:</string>
+    <string name="geometry">Geometry:</string>
+    <string name="filter">Filter:</string>
+    <string name="fingers">Fingers</string>
+    <string name="styles">Styles</string>
+    <string name="scores">Scores</string>
+    <string name="split">Split</string>
+    <string name="layers">Layers:</string>
+    <string name="save">Save</string>
+    <string name="info">Info</string>
+    <string name="settings">Settings</string>
+    <string name="refresh">Refresh</string>
+    <string name="output_text">Output Text</string>
+    <string name="layout">Layout:</string>
+    <string name="square_keys">Square keys</string>
+    <string name="rounded_keys">Rounded Keys</string>
+    <string name="key_graphic">Key Graphic:</string>
+    <string name="ok">OK</string>
+</resources>

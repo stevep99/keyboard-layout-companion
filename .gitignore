@@ -1,11 +1,13 @@
 *.iml
 *.iws
+.kotlin
 .gradle
 /local.properties
 /keystore.properties
 /keystore
 .idea/caches/
 .idea/libraries/
+.idea/artifacts/
 .idea/shelf/
 .idea/workspace.xml
 .idea/tasks.xml
@@ -30,6 +32,7 @@
 .idea/navEditor.xml
 .idea_modules/
 .idea/mongoSettings.xml
+.idea/copilot*
 .DS_Store
 build
 release
