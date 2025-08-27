@@ -1,6 +1,6 @@
 #name: Colemak-DH Seniply UK
 #config: ANGLE MATRIX
-#prefer_geometry: iso_angle
+#prefer_geometry: matrix_tiny
 #mapping: FORMAT_FULL
 
 #multilayer: All Layers
@@ -11,7 +11,7 @@
 ⇥    q    w    f    p    b    j    l    u    y    '    [    ]    _
 \0   a    r    s    t    g    m    n    e    i    o    ;    _    _
 ⇧    z    x    c    d    v    k    h    ,    .    /    ⇧
-Ctrl Alt  Ext  _    ⇧    ⇧    ␣    ␣    Sym  Alt  ⊞    Ctrl
+\0   \0   Ext  _    ⇧    ␣    ␣    _    Sym  \0   \0   \0
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
 ff   f    f    f    f    f    f    f    f    f    f    ff   ff   ff
@@ -24,7 +24,7 @@ ff   ff   f    f    f    f    f    f    f    ff   ff   ff
 #labels
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
 _    !    "    £    $    %    =    `    :    ;    +    _    _    _
-_    ⎇    ⊞    ⇧    ⎈    ^    *    (    {    [    -    _    _    _
+_    ⎇    ⌘    ⇧    ⎈    ^    *    (    {    [    -    _    _    _
 _    \\   |    #    ~    &    ¬    )    }    ]    \_   _
 _    _    _    _    _    _    _    _    _*   _    _    _
 #colors
@@ -38,7 +38,7 @@ ff   ff   f    f    f    f    f    f    r    ff   ff   ff
 #labels
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
 _    _    _    _    _    NLk  =    7    8    9    +    _    _    _
-_*   ⎇    ⊞    ⇧    ⎈    RA   *    4    5    6    -    _    _    _
+_*   ⎇    ⌘    ⇧    ⎈    RA   *    4    5    6    -    _    _    _
 _    _    ☰    ⇥    ⌫    ⏎    0    1    2    3    /    _
 _    _    _    _    _*   _*   _    _    _*   _    _    _
 #colors
@@ -52,8 +52,8 @@ ff   ff   f    f    r    f    f    f    r    ff   ff   ff
 #labels
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
 _    Esc  Bk   Fnd  Fw   Ins  ⇞    ⇱    ↑    ⇲    ⇪    _    _    _
-_    ⎇    ⊞    ⇧    ⎈    RA   ⇟    ←    ↓    →    ⌦    _    _    _
-_    ⎈Z   ⎈X   ⎈C   ⊞    ⎈V   ⏎    ⌫    ⇥    ☰    Prt  _
+_    ⎇    ⌘    ⇧    ⎈    RA   ⇟    ←    ↓    →    ⌦    _    _    _
+_    ⎈Z   ⎈X   ⎈C   ⌘    ⎈V   ⏎    ⌫    ⇥    ☰    Prt  _
 _    _    _*   _    _    _    ⏎    _    _    _    _    _
 #colors
 ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff   ff
@@ -66,7 +66,7 @@ ff   ff   r    f    f    f    f    f    f    ff   ff   ff
 #labels
 _    _    _    _    _    _    _    _    _    _    _    _    _    _
 _    ■    ⏮    ▶    ⏭    🔆    F12  F7   F8   F9   SLk  _    _    _
-_    ⎇    ⊞    ⇧    ⎈    🔅    F11  F4   F5   F6   @L0  _    _    _
+_    ⎇    ⌘    ⇧    ⎈    🔅    F11  F4   F5   F6   @L0  _    _    _
 _    🔇    🔉    ⎈⇧C  🔊    ⎈⇧V  F10  F1   F2   F3   @L1  _
 _    _    _*   _    _    _    ⏎    _    _*   _    _    _
 #colors

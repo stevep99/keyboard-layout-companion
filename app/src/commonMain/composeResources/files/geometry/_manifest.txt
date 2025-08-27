@@ -18,4 +18,5 @@ matrix-ergo.json
 matrix-long.json
 matrix-mini.json
 matrix-preonic.json
+matrix-36.json
 matrix-tiny.json

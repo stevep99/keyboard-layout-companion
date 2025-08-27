@@ -1,5 +1,6 @@
 #name: Colemak-DH
 #config: ANGLE MATRIX
+#prefer_geometry: iso_angle
 #labels
 q w f p b j l u y ;
 a r s t g m n e i o
