@@ -1,0 +1,69 @@
+name: Deploy WASM Web Target to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+            
+      - name: Build Kotlin WASM Web Target
+        run: ./gradlew wasmJsBrowserDistribution --no-daemon
+        env:
+          ORG_GRADLE_OPTS: "-Xmx3g -Dkotlin.daemon.jvm.options=-Xmx2g"
+
+      - name: Prepare deploy folder
+        run: |
+          DEPLOY_DIR=build/deploy
+          SRC_DIR=$(find build/js/packages -name index.html -printf '%h\n' -quit)
+          mkdir -p $DEPLOY_DIR
+          cp -r $SRC_DIR/* $DEPLOY_DIR/
+
+          # Fix index.html to point to app.mjs
+          sed -i 's/composeApp.js/app.mjs/' $DEPLOY_DIR/index.html
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/build/dist/wasmJs/productionExecutable
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
