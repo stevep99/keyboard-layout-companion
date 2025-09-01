@@ -1,14 +1,9 @@
-name: Deploy WASM Web Target to GitHub Pages
+name: Build the Android APK
 
 on:
   push:
     branches:
       - master
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build:
@@ -37,23 +32,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
             
-      - name: Build Kotlin WASM Web Target
-        run: ./gradlew wasmJsBrowserDistribution --no-daemon
+      - name: Build the Android APK target
+        run: ./gradlew assembleRelease
         env:
           ORG_GRADLE_OPTS: "-Xmx3g -Dkotlin.daemon.jvm.options=-Xmx2g"
 
-      - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: app/build/dist/wasmJs/productionExecutable
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
