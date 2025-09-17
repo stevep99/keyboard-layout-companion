@@ -1,7 +1,10 @@
 package io.github.colemakmods.keyboard_companion
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.window.CanvasBasedWindow
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.window.ComposeViewport
 import io.github.colemakmods.keyboard_companion.platform.Common
 import io.github.colemakmods.keyboard_companion.platform.WasmPlatform
 import io.github.colemakmods.keyboard_companion.view.App
@@ -13,7 +16,9 @@ fun main() {
     Common.platform = WasmPlatform(VERSION)
 
     @OptIn(ExperimentalComposeUiApi::class)
-    CanvasBasedWindow(title = "Keyboard Layout Companion") {
-        App()
+    ComposeViewport {
+        Box(Modifier.fillMaxSize()) {
+            App()
+        }
     }
 }
