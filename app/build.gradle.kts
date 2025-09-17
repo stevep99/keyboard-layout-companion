@@ -17,8 +17,8 @@ android {
         applicationId = "io.github.colemakmods.keyboard_companion"
         minSdk = 21
         targetSdk = 35
-        versionCode = 10
-        versionName = "1.10"
+        versionCode = 11
+        versionName = "1.11"
         setProperty("archivesBaseName", "companion-$versionName")
     }
     buildFeatures {
