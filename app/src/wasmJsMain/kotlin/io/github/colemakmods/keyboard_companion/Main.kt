@@ -9,7 +9,7 @@ import io.github.colemakmods.keyboard_companion.platform.Common
 import io.github.colemakmods.keyboard_companion.platform.WasmPlatform
 import io.github.colemakmods.keyboard_companion.view.App
 
-private const val VERSION = "1.11"
+private const val VERSION = "1.12"
 
 fun main() {
 
