@@ -39,3 +39,5 @@ release
 /captures
 .externalNativeBuild
 .cxx
+/kotlin-js-store/wasm/yarn.lock
+/.idea/AndroidProjectSystem.xml

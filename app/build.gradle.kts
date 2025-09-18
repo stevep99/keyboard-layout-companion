@@ -12,11 +12,11 @@ plugins {
 
 android {
     namespace = "io.github.colemakmods.keyboard_companion"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         applicationId = "io.github.colemakmods.keyboard_companion"
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 11
         versionName = "1.11"
         setProperty("archivesBaseName", "companion-$versionName")
