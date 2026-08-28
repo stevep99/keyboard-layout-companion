@@ -7,19 +7,18 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.compose.compiler)
-    kotlin("plugin.serialization") version "2.2.0"
+    kotlin("plugin.serialization") version "2.4.10"
 }
 
 android {
     namespace = "io.github.colemakmods.keyboard_companion"
-    compileSdk = 36
+    compileSdk = 37
     defaultConfig {
         applicationId = "io.github.colemakmods.keyboard_companion"
-        minSdk = 21
-        targetSdk = 36
+        minSdk = 23
+        targetSdk = 37
         versionCode = 12
         versionName = "1.12"
-        setProperty("archivesBaseName", "companion-$versionName")
     }
     buildFeatures {
         compose = true
@@ -88,7 +87,6 @@ kotlin {
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.materialIconsExtended)
             implementation(compose.components.resources)
