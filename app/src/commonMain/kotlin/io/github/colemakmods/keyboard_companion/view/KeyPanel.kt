@@ -49,8 +49,9 @@ private val log = Logger.withTag("KeyPanel")
 @Composable
 fun KeyPanelPreview1() {
     KeyPanel(
-        Key("?",0.0f, 0.0f, 1.0f, 1.0f, 4),
+        Key("?", 0.0f, 0.0f, 1.0f, 1.0f, 4),
         Options(),
+        1.0f,
         1.0f,
         AppColor.keyDbColor, Color.Transparent, null, 1f,
         "H", null, arrayOf(")", "1", "⌫", "F1"))
@@ -63,6 +64,7 @@ fun KeyPanelPreview2() {
         Key("?", 0.0f, 0.0f, 1.0f, 1.0f, 2),
         Options(),
         1.0f,
+        1.0f,
         AppColor.keyDyColor, Color.Transparent, null, 1f,
         "A", TextDecoration.Underline)
 }
@@ -74,6 +76,7 @@ fun KeyPanelPreview3() {
         Key("?", 0.0f, 0.0f, 1.0f, 1.0f, 1),
         Options(keyRenderOption = KeyRenderOptionSquare),
         1.0f,
+        1.0f,
         AppColor.keyLyColor, Color.Transparent, Res.drawable.bluecircle)
 }
 
@@ -81,6 +84,7 @@ fun KeyPanelPreview3() {
 fun KeyPanel(key: Key,
              options: Options,
              geometryHeight: Float,
+             mediaScaleFactor: Float,
              keyColor: Color,
              backgroundColor: Color? = null,
              foregroundImage: DrawableResource? = null,
@@ -97,8 +101,6 @@ fun KeyPanel(key: Key,
     val yp = geometryHeight - (key.y + 1f)
 
     //log.d("KeyPanel $mainLabel $keyColor $backgroundColor $foregroundImage $alpha")
-    val mediaScaleFactor = if (printMode) 2f / LocalDensity.current.density else 1f
-    //log.d("mediaScaleFactor $mediaScaleFactor")
     val keySizeDp = AppDimens.keySize.times(mediaScaleFactor)
     val width = keySizeDp.times(key.width)
     val height = keySizeDp.times(key.height)

@@ -15,6 +15,7 @@ import co.touchlab.kermit.Logger
 import io.github.colemakmods.keyboard_companion.model.formatToOneDecimalPlace
 import io.github.colemakmods.keyboard_companion.model.formattedLabel
 import io.github.colemakmods.keyboard_companion.options.Options
+import io.github.colemakmods.keyboard_companion.platform.Common
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
 
@@ -31,7 +32,7 @@ fun KeyboardPanel(viewModel: MainViewModel) {
             && viewModel.options.mode == Options.Mode.MODE_LAYOUT
     val mainLayer = if (showMultiLayers) viewModel.currentLayer + 1 else viewModel.currentLayer
 
-    val mediaScaleFactor = if (printMode) 2f / LocalDensity.current.density else 1f
+    val mediaScaleFactor = if (printMode) 2f / LocalDensity.current.density else Common.platform.defaultMediaScaleFactor()
     log.d("KeyboardPanel mediaScaleFactor $mediaScaleFactor")
     val boxWidth = AppDimens.keySize.times(geometry.width).times(mediaScaleFactor)
     val boxHeight = AppDimens.keySize.times(geometry.height).times(mediaScaleFactor)
@@ -99,6 +100,7 @@ fun KeyboardPanel(viewModel: MainViewModel) {
                     key = key,
                     options = viewModel.options,
                     geometryHeight = geometry.height,
+                    mediaScaleFactor = mediaScaleFactor,
                     keyColor = keyColor,
                     backgroundColor = backgroundColor,
                     foregroundImage = keyGraphicResource,

@@ -25,33 +25,6 @@ class WasmPlatform(private val version: String): Platform {
         return version
     }
 
-    override fun formatLabel(inputLabel: String): String {
-        // replace unicode chars not currently supported in Compose
-        var label = inputLabel
-        label = label.replace("⎇", "[A]")
-        label = label.replace("⌘", "[W]")
-        label = label.replace("⇧", "[S]")
-        label = label.replace("⎈", "[C]")
-        label = when(label) {
-            "⇟" -> "PgDn"
-            "⇞" -> "PgUp"
-            "↑" -> "Up"
-            "↓" -> "Dn"
-            "←" -> "Lt"
-            "→" -> "Rt"
-            "⇱" -> "Home"
-            "⇲" -> "End"
-            "⌦" -> "Del"
-            "⌫" -> "BS"
-            "⇪" -> "Caps"
-            "⏎" -> "Ent"
-            "⇥" -> "Tab"
-            "☰" -> "Mnu"
-            else -> label
-        }
-        return label
-    }
-
     override fun loadExtraLayouts(): List<Pair<String, ByteArray>>? {
         // not supported
         return null
@@ -100,5 +73,7 @@ class WasmPlatform(private val version: String): Platform {
     override fun outputTextKeyboard(filename: String, content: String) {
         // no action
     }
+
+    override fun defaultMediaScaleFactor() = 1.5f
 
 }

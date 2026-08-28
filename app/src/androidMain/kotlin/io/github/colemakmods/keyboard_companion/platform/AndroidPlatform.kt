@@ -30,9 +30,6 @@ class AndroidPlatform(private val activity: KeyboardCompanionActivity): Platform
             return ""
         }
     }
-
-    override fun formatLabel(inputLabel: String): String = inputLabel
-
     override fun loadExtraLayouts(): List<Pair<String, ByteArray>>? {
         val layoutDir = activity.getExternalFilesDir("layout")
         return layoutDir?.list()
@@ -97,5 +94,7 @@ class AndroidPlatform(private val activity: KeyboardCompanionActivity): Platform
             Toast.makeText(activity, "Error: unable to write to $filename", Toast.LENGTH_SHORT).show()
         }
     }
+
+    override fun defaultMediaScaleFactor() = 1.0f
 
 }

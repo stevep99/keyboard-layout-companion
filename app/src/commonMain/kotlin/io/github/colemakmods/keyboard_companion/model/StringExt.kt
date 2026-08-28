@@ -7,5 +7,5 @@ fun String.formattedLabel() =
         //show uppercase labels on alpha keys
         this.uppercase()
     } else {
-        Common.platform.formatLabel(this)
+        this
     }
